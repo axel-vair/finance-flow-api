@@ -23,7 +23,8 @@ public class TransactionController {
      * @return
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Transaction> listBoats() {
+    public List<Transaction> listTransactions() {
+
         return transactionRepository.findAll();
     }
 
