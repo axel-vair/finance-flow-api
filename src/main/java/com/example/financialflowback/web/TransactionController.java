@@ -67,5 +67,16 @@ public class TransactionController {
         }
     }
 
+    /**
+     * Method used to delete a transaction
+     * @param id
+     * @return
+     */
+    @DeleteMapping(value = "{id}")
+    public ResponseEntity<Transaction> deleteTransaction(@PathVariable Integer id){
+        transactionRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
 
