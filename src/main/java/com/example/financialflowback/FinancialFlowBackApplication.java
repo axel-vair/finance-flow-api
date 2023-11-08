@@ -2,6 +2,8 @@ package com.example.financialflowback;
 
 import com.example.financialflowback.domain.Transaction;
 import com.example.financialflowback.repository.TransactionRepository;
+import com.example.financialflowback.domain.User;
+import com.example.financialflowback.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,6 +15,10 @@ public class FinancialFlowBackApplication implements CommandLineRunner {
 
 	@Autowired
 	private TransactionRepository transactionRepository;
+
+	@Autowired
+	private UserRepository userRepository;
+
 
 	public static void main(String[] args) {
 		System.setProperty("file.encoding", "UTF-8");
@@ -38,6 +44,13 @@ public class FinancialFlowBackApplication implements CommandLineRunner {
 		t2.setPlace("Marseille");
 		t2.setPoint(true);
 		transactionRepository.saveAndFlush(t2);
+
+		userRepository.deleteAll();
+		userRepository.flush();
+		User tU= new User();
+		tU.setMail("morgane@gmail.com");
+		tU.setPassword("hello");
+		userRepository.saveAndFlush(tU);
 	}
 
 }
