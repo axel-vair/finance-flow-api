@@ -15,7 +15,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="transaction")
+@Table(name="transactions")
 public class Transaction implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -41,5 +41,9 @@ public class Transaction implements Serializable {
 
     @Column(name = "point")
     private boolean point;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }
