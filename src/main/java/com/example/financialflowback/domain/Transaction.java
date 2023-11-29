@@ -42,6 +42,7 @@ public class Transaction implements Serializable {
     @Column(name = "point")
     private boolean point;
 
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
