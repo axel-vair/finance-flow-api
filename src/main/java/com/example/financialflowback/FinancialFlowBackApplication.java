@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import java.util.Date;
 
 @SpringBootApplication
@@ -49,7 +51,11 @@ public class FinancialFlowBackApplication implements CommandLineRunner {
 		userRepository.flush();
 		User tU= new User();
 		tU.setMail("morgane@gmail.com");
-		tU.setPassword("hello");
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String encodedPassword = passwordEncoder.encode("hello");
+		tU.setPassword(encodedPassword);
+		tU.setUsername("momo");
+		tU.setRole("user");
 		userRepository.saveAndFlush(tU);
 	}
 

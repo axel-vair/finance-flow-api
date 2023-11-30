@@ -21,10 +21,15 @@ public class User implements Serializable {
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @Column(name = "username", nullable = false)
+    private String username;
+
     @Column(name = "mail", nullable = false)
     private String mail;
 
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "role", nullable = false)
+    private String role;
 }
