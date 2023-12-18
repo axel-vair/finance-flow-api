@@ -1,9 +1,9 @@
 package com.example.financialflowback;
 
+import com.example.financialflowback.domain.Category;
 import com.example.financialflowback.domain.Transaction;
+import com.example.financialflowback.repository.CategoryRepository;
 import com.example.financialflowback.repository.TransactionRepository;
-import com.example.financialflowback.domain.User;
-import com.example.financialflowback.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,9 +17,7 @@ public class FinancialFlowBackApplication implements CommandLineRunner {
 	private TransactionRepository transactionRepository;
 
 	@Autowired
-	private UserRepository userRepository;
-
-
+	private CategoryRepository categoryRepository;
 	public static void main(String[] args) {
 		System.setProperty("file.encoding", "UTF-8");
 		SpringApplication.run(FinancialFlowBackApplication.class, args);
@@ -29,11 +27,22 @@ public class FinancialFlowBackApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		transactionRepository.deleteAll();
 		transactionRepository.flush();
+		categoryRepository.deleteAll();
+		categoryRepository.flush();
+
+		Category c1 = new Category();
+		c1.setName("Débit");
+		categoryRepository.saveAndFlush(c1);
+		Category c2 = new Category();
+		c2.setName("Crédit");
+		categoryRepository.saveAndFlush(c2);
+
 		Transaction t1 = new Transaction();
 		t1.setTitle("Première opération");
 		t1.setAmount(123.3f);
 		t1.setDescription("Ma première opération est géniale youhou");
 		t1.setDate(new Date());
+		t1.setCategory(c1);
 		transactionRepository.saveAndFlush(t1);
 
 		Transaction t2 = new Transaction();
@@ -43,14 +52,10 @@ public class FinancialFlowBackApplication implements CommandLineRunner {
 		t2.setDate(new Date());
 		t2.setPlace("Marseille");
 		t2.setPoint(true);
+		t2.setCategory(c2);
 		transactionRepository.saveAndFlush(t2);
 
-		userRepository.deleteAll();
-		userRepository.flush();
-		User tU= new User();
-		tU.setMail("morgane@gmail.com");
-		tU.setPassword("hello");
-		userRepository.saveAndFlush(tU);
+
 	}
 
 }
