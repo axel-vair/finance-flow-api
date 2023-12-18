@@ -8,23 +8,22 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="users")
-public class User implements Serializable {
+@Table(name = "subcategory")
+public class Subcategory implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
 
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "mail", nullable = false)
-    private String mail;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-    @Column(name = "password", nullable = false)
-    private String password;
 
 }
