@@ -46,4 +46,8 @@ public class Transaction implements Serializable {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @ManyToOne
+    @JoinColumn(name = "subcategory_id")
+    private Subcategory subcategory;
+
 }
